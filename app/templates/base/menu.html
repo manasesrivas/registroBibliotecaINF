@@ -1,0 +1,21 @@
+<form method="GET" class="search-box">
+    <input type="text" name="search" placeholder=" " value="{{ request.GET.search }}" class="search-box__input">
+    <label for="" class="search-box__label">Buscar</label>
+    <button class="search-box__button">Buscar</button>
+</form>
+<nav class="nav">
+    <ul class="nav-box">
+        <li >
+            <a href="{% url 'loans' %}" class="nav-box__items {% if request.path == '/loans/home/' %} item-menu-activate  {% endif %} ">Prestamos</a>
+        </li>
+        <li >
+            <a href="{% url 'readers' %}" class="nav-box__items {% if request.path == '/readers/home/' %} item-menu-activate  {% endif %} ">Lectores</a>
+        </li>
+        <li >
+            <a href="{% url 'books' %}" class="nav-box__items {% if request.path == '/books/home/' %} item-menu-activate  {% endif %} ">Libros</a>
+        </li>
+        <li >
+            <a href="{% url 'signout' %}" class="nav-box__items">Cerrar Sesion</a>
+        </li>
+    </ul>
+</nav>

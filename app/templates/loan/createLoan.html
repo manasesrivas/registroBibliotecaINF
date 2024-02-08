@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<header>
+    <form method="GET" class="search-box">
+        <input type="text" name="searchBook" placeholder=" " value="{{ request.GET.searchBook }}"
+            class="search-box__input">
+        <label for="" class="search-box__label">Buscar</label>
+        <button class="search-box__button">Buscar</button>
+    </form>
+    <nav class="nav">
+        <ul class="nav-box">
+            <li>
+                <a href="{% url 'readers' %}" class="nav-box__items item-menu-activate">Volver</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+
+    <h1 class="title-page">Prestatario: {{reader.nombres}} {{ reader.apellidos}}</h1>
+
+    <section class="container background_filter">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>titulo</th>
+                    <th>editorial</th>
+                    <th>autor</th>
+                    <th>edicion</th>
+                    <th>disponible</th>
+                    <th>detalles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+
+                <tr class="row">
+                    <td class="content-list">{{book.id}}</td>
+                    <td class="content-list">{{book}}</td>
+                    <td class="content-list">{{book.editorial}}</td>
+                    <td class="content-list">{{book.autor}}</td>
+                    <td class="content-list">{{book.edicion}}</td>
+                    <td class="content-list">
+                        <span class="libro-disponible">Disponible</span>
+                    </td>
+                    <td class="content-list">
+                        <div class="center-items">
+                            <form action="{% url 'saveLoan' book.id reader.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="button-cta">Prestar</button>
+                            </form>
+                            <a href="{% url 'bookDetails' book.id %}" class="ctaImg">
+                                <img src="{% static 'img/details.svg' %}" alt="" srcset="">
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+
+
+{% endblock content %}

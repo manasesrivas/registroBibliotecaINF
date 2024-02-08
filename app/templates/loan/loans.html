@@ -1,0 +1,67 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+{% include '../base/modal.html' %}
+<header>
+    {% include 'base/menu.html' %}
+</header>
+<main>
+    <h1 class="title-page">Prestamos</h1>
+    <section class="container background_filter">
+        <div class="container-row">
+            <a href="{% url 'readers' %}" class="ctaAdd">Crear Prestamo</a>
+            <label for="" class="style-label">libros no devueltos: {{noDevueltos.count}} </label>
+            <button class="button_modal">Filtros</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="content-list">ID</th>
+                    <th class="content-list">lector</th>
+                    <th class="content-list">libro</th>
+                    <th class="content-list">autor</th> 
+                    <th class="content-list">fecha de salida</th>
+                    <th class="content-list">fecha de entrega</th>
+                    <th class="content-list">detalles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for loan in loans %}
+                <tr class="disponible">
+                    <td class="content-list">{{loan.id}}</td>
+                    <td class="content-list">{{loan.idLector.nombres}}</td>
+                    <td class="content-list">{{loan.idLibro.titulo}}</td>
+                    <td class="content-list">{{loan.idLibro.autor}}</td>
+                    <td class="content-list">{{loan.fechaPrestamo}}</td>
+                    {% if loan.fechaEntrega %}
+                    <td class="content-list">{{loan.fechaEntrega}}</td>
+                    <td class="content-list">
+                        <div class="center-items">
+                            <a href="{% url 'loanDetails' loan.id %}" class="ctaImg">
+                                <img src="{% static 'img/details.svg' %}" alt="">
+                            </a>
+                        </div>
+                    </td>
+                    {% else %}
+                    <td class="content-list"> <span class="error">No devulto</span> </td>
+                    <td class="content-list">
+                        <form action="{% url 'loanComeback' loan.id %}" method="POST" class="center-items">
+                            {% csrf_token %}
+                            <button class="button-cta">Devuleto</button>
+                            <a href="{% url 'loanDetails' loan.id %}" class="">
+                                <img src="{% static './img/details.svg' %}" alt="" class="ctaImg">
+                            </a>
+                        </form>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<script src="{% static './js/modal.js' %}"></script>
+
+
+{% endblock content %}

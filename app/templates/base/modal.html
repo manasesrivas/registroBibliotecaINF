@@ -1,0 +1,77 @@
+<section class="modal-container">
+
+    <form class="modal" method="POST">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="x-modal">
+            <path
+                d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
+            </path>
+        </svg>
+        <div class="space-evenly">
+            <div class="center-items parent-check-boxs">
+                <label for="" class="style-label">Docentes</label>
+                <input type="checkbox" name="docentes" class="cursor-pointer check-docentes style-check">
+            </div>
+            <div class="center-items parent-check-boxs">
+                <label for="" class="style-label">Estudiantes</label>
+                <input type="checkbox" name="estudiantes" class="cursor-pointer check-estudiantes style-check">
+            </div>
+            <div class="center-items parent-check-boxs">
+                <label for="" class="style-label">Todos</label>
+                <input type="checkbox" name="todos" class="cursor-pointer check-todos style-check">
+            </div>
+        </div>
+        <div class="center-items">
+            <label class="style-label" for="">desde:</label>
+            <input type="date" name="desde" id="desde" class="style-select cursor-pointer">
+            <label class="style-label" for="">hasta:</label>
+            <input type="date" name="hasta" id="hasta" class="style-select cursor-pointer">
+        </div>
+        <div class="center-items">
+            <label class="style-label" for="">
+                elegir grado:
+            </label>
+            <div class="center-items">
+                <select name="year" id=""  class="selects-for-students style-select cursor-pointer">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <select name="especialidad" id="" class="selects-for-students style-select cursor-pointer" >
+                    <option value="General">General</option>
+                    <option value="Administrativo contable">Administrativo contable</option>
+                    <option value="Desarrollo de software">Desarrollo de software</option>
+                    <option value="Serviempresa">Serviempresa</option>
+                </select>
+                <select name="seccion" id="" class="selects-for-students style-select cursor-pointer">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+            </div>
+        </div>
+        <div class="center-items">
+            <label for="">Mostrar todas los estudiantes</label>
+            <input type="checkbox" name="todas-las-secciones" class="cursor-pointer todos-los-estudiantes style-check">
+        </div>
+        <div class="center-items">
+            <label class="style-label" for="">
+                en order de:
+            </label>
+            <div class="center-items">
+                <select name="select-order_by" id=""  class="style-select cursor-pointer">
+                    <option value="fechaEntrega">Libros no devueltos</option>
+                    <option value="-fechaEntrega">Libros devueltos</option>
+                </select>
+            </div>
+        </div>
+        <div class="center-items">
+            <div class="buttons-modal">
+                <button class="buttonFilter cursor-pointer">Aceptar</button>
+                {% csrf_token %}
+            </div>
+        </div>
+
+    </form>
+</section>

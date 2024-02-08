@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <header>
+        {% include 'base/menu.html' %}
+    </header>
+    <main>
+
+        <h1 class="title-page">Libros</h1>
+        
+        <section class="container background_filter">
+            <div class="space-between ">
+                <div class="leyenda">
+                    <a href="{% url 'addBook' %}" class="ctaAdd">Añadir Libro</a>
+                    <div class="leyenda-leyenda">
+                        <label for="" class="" >no devueltos: {{noDevueltos.count}} </label>
+                    </div>
+                </div>
+                    
+                <form action="" class="center-items align-end">
+                    <input type="text" name="search_filter" placeholder="Buscar" value="{{ request.GET.search_filter }}" class="search-box__input-filter">
+                    <select name="libros" class="style-select" id="">
+                        <option value="todos">Mostrar todos</option>
+                        <option value="devueltos">Mostrar libros devueltos</option>
+                        <option value="noDevueltos">Mostrar libros no devueltos</option>
+                    </select>
+                    <button class="color-update container-form__button">mostrar</button>
+                </form>
+            </div>
+            <table class="position-relative">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>titulo</th>
+                        <th>editorial</th>
+                        <th>autor</th>
+                        <th>edicion</th>
+                        <th>disponible</th>
+                        <th>detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr class="row">
+                        <td class="content-list">{{book.id}}</td>
+                        <td class="content-list">{{book}}</td>
+                        <td class="content-list">{{book.editorial}}</td>
+                        <td class="content-list">{{book.autor}}</td>
+                        <td class="content-list">{{book.edicion}}</td>
+                        {% if book.disponible %}
+                        <td class="content-list">
+                            <span class="libro-disponible">Disponible</span>
+                        </td>
+                        <td class="content-list">
+                            <div class="center-items">
+                                <a href="{% url 'bookDetails' book.id %}" class="ctaImg">
+                                    <img src="{% static 'img/details.svg' %}" alt="" srcset="">
+                                </a>
+                            </div>
+                        </td>
+                    {% else %}
+                        <td class="content-list">
+                            <span class="error">No disponible</span>
+                        </td>
+                        <td class="content-list">
+                            <div class="center-items">
+                                <a href="{% url 'bookDetails' book.id %}" class="ctaImg">
+                                    <img src="{% static 'img/details.svg' %}" alt="" srcset="">
+                                </a>
+                            </div>
+                        </td>
+                    {% endif %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+            </table>
+        </section>
+    </main>
+{% endblock content %}

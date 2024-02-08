@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    {% load static %}
+    <header>
+        <h1 class="title-page__addBook">{{title}}</h1>
+        <nav>
+            <ul class="nav-box">
+            <li><a href="{% url 'books' %}" class="nav-box__items item-menu-activate">Volver</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="div-container-addForm background_filter"> 
+        <div class="space-between">
+            <div class="align-end center-items">
+                {% if loan %}
+                <a href="{% url 'loanDetails' loan.id %}" class="cta">Ver prestamo</a>  
+                {% endif %}
+                <label for=""> veces prestado: {{leido}} </label>
+            </div>
+                
+            <form action="{% url 'deleteBook' book.id %}" method="POST" class="align-end">
+                {% csrf_token %}
+                <button class="container-form__button color-delete center-items">
+                    Eliminar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(202, 202, 202, 0.747)"><path d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm4 12H8v-9h2v9zm6 0h-2v-9h2v9zm.618-15L15 2H9L7.382 4H3v2h18V4z"></path></svg>
+                </button>
+            </form>
+        </div>
+        <form method="POST" action="" class="container-addForm">
+            {% csrf_token %}
+            {{error}}
+            <div class="content">
+                <div class="container-addForm--inputs">
+                    <label for="id_titulo" class="container-addForm--inputs__label">Titulo</label>
+                    <div class="border">
+                        {{form.titulo}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="id_editorial" class="container-addForm--inputs__label">Editorial</label>
+                    <div class="border">
+                        {{form.editorial}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="id_autor" class="container-addForm--inputs__label">Autor</label>
+                    <div class="border">
+                        {{form.autor}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="id_tipoAdquisicion" class="container-addForm--inputs__label">Tipo de adquisicion</label>
+                    <div class="border">
+                        {{form.tipoAdquisicion}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="id_edicion" class="container-addForm--inputs__label">Edicion</label>
+                    <div class="border">
+                        {{form.edicion}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="id_edicion" class="container-addForm--inputs__label">Puesto en circulacion</label>
+                    <div class="border">
+                        <div class="center-items">{{form.fechaEntrada}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-addForm--inputs space-between">
+                <button class="container-form__button color-update">Modificar</button>
+                <div class="center-items">
+                    <label for="" class="">agregar fecha de ahora</label> 
+                    <input class="style-check cursor-pointer" type="checkbox" name="dateToday" id="">
+                </div>
+
+            </div>
+        </form>
+    </div>
+{% endblock %}

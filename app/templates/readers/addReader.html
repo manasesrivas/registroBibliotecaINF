@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <header>
+        <h1 class="title-page__addReader">Añadir Lector</h1>
+    <div class="nav">
+        <ul class="nav-box">
+            <li >
+                <a href="{% url 'readers' %}" class="nav-box__items item-menu-activate">Volver</a>
+            </li>
+        </ul>
+    </div>
+    </header>
+    <div class="div-container-addForm background_filter"> 
+        
+        <form method="POST" action="{% url 'addReader' %}" class="container-addForm background_filter">
+            {% csrf_token %}
+            {{error}}
+            <div class="content">
+                <div class="container-addForm--inputs">
+                    <label for="" class="container-addForm--inputs__label">Nombres</label>
+                    <div class="border">
+                        {{form.nombres}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="" class="container-addForm--inputs__label">Apellidos</label>
+                    <div class="border">
+                        {{form.apellidos}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="" class="container-addForm--inputs__label">Año</label>
+                    <div class="border">
+                        {{form.año}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="" class="container-addForm--inputs__label">Seccion</label>
+                    <div class="border">
+                        {{form.seccion}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="" class="container-addForm--inputs__label">Especialidad</label>
+                    <div class="border">
+                        {{form.especialidad}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="" class="container-addForm--inputs__label">Email</label>
+                    <div class="border">
+                        {{form.email}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="" class="container-addForm--inputs__label">Telefono</label>
+                    <div class="border">
+                        {{form.numeroTelefono}}
+                    </div>
+                </div>
+                <div class="container-addForm--inputs">
+                    <label for="" class="container-addForm--inputs__label">Direccion</label>
+                    <div class="border">
+                        {{form.direccion}}
+                    </div>
+                </div>
+            </div>
+            <div class="container-addForm--inputs">
+                <button class="container-form__button color-update">crear</button>
+            </div>
+        </form>
+    </div>
+
+    
+{% endblock %}
