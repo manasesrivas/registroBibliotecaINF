@@ -1,18 +1,18 @@
-<form method="GET" class="search-box">
+{{-- <form method="GET" class="search-box">
     <input type="text" name="search" placeholder=" " value="" class="search-box__input">
     <label for="" class="search-box__label">Buscar</label>
     <button class="search-box__button">Buscar</button>
-</form>
+</form> --}}
 <nav class="nav">
     <ul class="nav-box">
         <li >
             <a href="#" class="nav-box__items">Prestamos</a>
         </li>
         <li >
-            <a href="#" class="nav-box__items">Lectores</a>
+            <a href="{{ route('reader.index') }}" class="nav-box__items">Lectores</a>
         </li>
         <li >
-            <a href="#" class="nav-box__items">Libros</a>
+            <a href="{{ route('book.index') }}" class="nav-box__items">Libros</a>
         </li>
         <li >
             <a href="#" class="nav-box__items">Cerrar Sesion</a>

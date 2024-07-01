@@ -1,19 +1,18 @@
 @extends('layouts.base')
-@include('layouts._partials.menu')
 @section('content')
-
-    @foreach ($books as $book)
     <header>
-        {% include 'base/menu.html' %}
+    <h1 class="title-page">Libros</h1>
+
+        @include('layouts._partials.menu')
     </header>
+
     <main>
 
-        <h1 class="title-page">Libros</h1>
         
         <section class="container background_filter">
             <div class="space-between ">
                 <div class="leyenda">
-                    <a href="#" class="ctaAdd">Añadir Libro</a>
+                    <a href="{{ route('book.create') }}" class="ctaAdd">Añadir Libro</a>
                     <div class="leyenda-leyenda">
                         <label for="" class="" >no devueltos: 19 </label>
                     </div>
@@ -42,13 +41,45 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @component('_components.rowShowBook')
+                @foreach ($books as $book)
+                <tr class="row">
+                    <td class="content-list">{{$book->id}}</td>
+                    <td class="content-list">{{$book->title}}</td>
+                    <td class="content-list">{{$book->editorial}}</td>
+                    <td class="content-list">{{$book->author}}</td>
+                    <td class="content-list">{{$book->edition}}</td>
+                    @if ($book->disponible)
+                        <td class="content-list">
+                        <span class="libro-disponible">Disponible</span>
+                        </td>
+                        <td class="content-list">
+                            <div class="center-items">
+                                <a href="{{ route('book.edit', $book->id)}}" class="ctaImg">
+                                    <img src="{{ asset('assets/img/details.svg')}}" alt="" srcset="">
+                                </a>
+                            </div>
+                        </td>
+                
                         
-                    @endcomponent
+                    @else
+                        
+                    <td class="content-list">
+                        <span class="error">No disponible</span>
+                    </td>
+                    <td class="content-list">
+                        <div class="center-items">
+                            <a href="{{ route('book.edit', $book->id)}}" class="ctaImg">
+                                <img src="{{ asset('assets/img/details.svg')}}" alt="" srcset="">
+                            </a>
+                        </div>
+                    </td>
+                    @endif
+                </tr>
+                    
+                @endforeach
                     </tbody>
             </table>
         </section>
     </main>
-    @endforeach
     
 @endsection
