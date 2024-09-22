@@ -1,2 +1,2 @@
 # registroBibliotecarioINFRAVENZ
-diseño HTML para el sistema 
+diseño, crud completo para el funcionamiento del sistema web hecho en django
