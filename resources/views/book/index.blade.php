@@ -14,7 +14,7 @@
                 <div class="leyenda">
                     <a href="{{ route('book.create') }}" class="ctaAdd">Añadir Libro</a>
                     <div class="leyenda-leyenda">
-                        <label for="" class="" >no devueltos: 19 </label>
+                        <label for="" class="" >no devueltos: {{$pendientes}} </label>
                     </div>
                 </div>
                     

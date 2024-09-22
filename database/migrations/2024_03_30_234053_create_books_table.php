@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('editorial')->nullable();
             $table->string('tipoAdquisicion')->nullable();
             $table->string('edition')->nullable();
-            $table->boolean('dispobible')->default(true);
+            $table->boolean('disponible')->default(true);
             $table->timestamps();
         });
     }

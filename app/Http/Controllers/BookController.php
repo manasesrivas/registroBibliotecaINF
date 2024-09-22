@@ -11,7 +11,8 @@ class BookController extends Controller
 {
     public function index(): View{
         $books = Book::all();
-        return view('book.index', compact('books'));
+        $pendientes = Book::where("disponible", false)->count();
+        return view('book.index', compact('books', 'pendientes'));
     }
 
     public function create(): View{

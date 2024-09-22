@@ -1,0 +1,10 @@
+DELIMITER //
+CREATE TRIGGER create_loan__modify_book__INSERT AFTER INSERT ON loans FOR EACH ROW
+BEGIN
+UPDATE books SET disponible = false WHERE books.id = NEW.book_id;
+END // DELIMITER;
+DELIMITER //
+CREATE TRIGGER create_loan__modify_book__UPDATE AFTER UPDATE ON loans FOR EACH ROW 
+BEGIN 
+IF NEW.estado = false THEN UPDATE books SET disponible = true WHERE books.id = NEW.book_id; END IF; 
+END // DELIMITER;

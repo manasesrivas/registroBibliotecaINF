@@ -6,13 +6,13 @@
 <nav class="nav">
     <ul class="nav-box">
         <li >
-            <a href="#" class="nav-box__items">Prestamos</a>
+            <a href="{{ route('loan.index') }}" class="nav-box__items @if(Route::currentRouteName()=="loan.index") item-menu-activate @endif">Prestamos</a>
         </li>
         <li >
-            <a href="{{ route('reader.index') }}" class="nav-box__items">Lectores</a>
+            <a href="{{ route('reader.index') }}" class="nav-box__items @if(Route::currentRouteName()=="reader.index") item-menu-activate @endif">Lectores</a>
         </li>
         <li >
-            <a href="{{ route('book.index') }}" class="nav-box__items">Libros</a>
+            <a href="{{ route('book.index') }}" class="nav-box__items @if(Route::currentRouteName()=="book.index") item-menu-activate @endif">Libros</a>
         </li>
         <li >
             <a href="#" class="nav-box__items">Cerrar Sesion</a>

@@ -97,7 +97,7 @@
             </div>
         </form>
         <div class="align-end">
-            <p class="textOpenModal">Libros leidos 32 </p>
+            <p class="textOpenModal">Libros leidos {{$libros_leidos}} </p>
         </div>
         {{-- <section class="">
             <table>

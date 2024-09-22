@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -15,11 +16,11 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('book_id');
-            $table->unsignedBigInteger('reader_id');
-            $table->date('loanDate');
-            $table->date('comeBackDate')->nullable();
-            $table->boolean('state')->default(true);
+            $table->bigInteger("book_id");
+            $table->bigInteger("reader_id");
+            $table->boolean("estado")->default(true);
+            $table->date("prestamo_realizado")->default(DB::raw("CURRENT_DATE"));
+            $table->date("prestamo_completado")->nullable();
             $table->timestamps();
         });
     }
